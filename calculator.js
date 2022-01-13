@@ -177,37 +177,47 @@ function getOperation() {
       switch (operator.id) {
         case "add":
           if (OPERATION == null && INT_A != null) {
-            OPERATION = "+";
+            OPERATION = "add";
             showDisplay(" + ");
           }
           return;
         case "subtract":
           if (OPERATION == null && INT_A != null) {
-            OPERATION = "-";
+            OPERATION = "subtract";
             showDisplay(" - ");
           }
           return;
         case "multiply":
           if (OPERATION == null && INT_A != null) {
-            OPERATION = "*";
+            OPERATION = "multiply";
             showDisplay(" * ");
           }
           return;
         case "divide":
           if (OPERATION == null && INT_A != null) {
-            OPERATION = "/";
+            OPERATION = "divide";
             showDisplay(" / ");
           }
           return;
         case "clear":
           resetCalc();
-          return;
+          return;         
       }
     })
   })
 }
 
-
+function getResult() {
+  const enterButton = document.querySelector('#enter');
+  enterButton.addEventListener('click', function() {
+    const display = document.querySelector('#display');
+    display.textContent = "";
+    showDisplay(operate(OPERATION, INT_A, INT_B));
+    OPERATION = null;
+  })
+};
 
 getInput();
 getOperation();
+getResult();
+
