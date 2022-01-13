@@ -1,3 +1,11 @@
+let INT_A = null;
+let INT_B = null;
+let OPERATION = null;
+
+getInput();
+getOperation();
+getResult();
+
 function add(a, b) {
   return a + b;
 }
@@ -25,7 +33,13 @@ function operate(operation, a, b) {
     return multiply(a, b);
   }
   else if (operation == "divide") {
-    return divide(a, b);
+    if (INT_B == 0) {
+      alert("Don't even try it!");
+      resetCalc();
+    }
+    else {
+      return divide(a, b);
+    }
   }
   else {
     return null;
@@ -35,7 +49,12 @@ function operate(operation, a, b) {
 // Takes the result and displays it on the calculator
 function showDisplay(result) {
   const display = document.querySelector('#display');
-  display.textContent += result;
+  if (display.textContent == "DISPLAY") {
+    display.textContent = result;
+  }
+  else {
+    display.textContent += result;
+  }
 }
 
 function resetCalc() {
@@ -43,12 +62,8 @@ function resetCalc() {
   INT_B = null;
   OPERATION = null;
   const display = document.querySelector('#display');
-  display.textContent = " ";
+  display.textContent = "DISPLAY";
 }
-
-let INT_A = null;
-let INT_B = null;
-let OPERATION = null;
 
 function getInput() {
   const numbers = document.querySelectorAll('.number');
@@ -210,14 +225,14 @@ function getOperation() {
 function getResult() {
   const enterButton = document.querySelector('#enter');
   enterButton.addEventListener('click', function() {
+    if (INT_A != null && INT_B != null) {
     const display = document.querySelector('#display');
     display.textContent = "";
-    showDisplay(operate(OPERATION, INT_A, INT_B));
+    let result = operate(OPERATION, INT_A, INT_B);
+    showDisplay(result);
+    INT_A = result;
+    INT_B = null;
     OPERATION = null;
+    }
   })
 };
-
-getInput();
-getOperation();
-getResult();
-
