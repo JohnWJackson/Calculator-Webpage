@@ -8,11 +8,14 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: black;
-
+  border: 3px solid rgba(131, 131, 143, 0.555);
 }
 
 button {
   border-radius: 5px;
+  border: 2px solid rgba(131, 131, 143, 0.555);
+  font-weight: bold;
+  font-size: 18px;
 }
 
 button:hover {
@@ -21,16 +24,20 @@ button:hover {
 }
 
 #calculator {
-  background-color: grey;
+  background-color: rgb(102, 100, 100);
+  border: 3px solid rgba(131, 131, 143, 0.555);
+  border-radius: 5px;
   width: 20rem;
-  height: 50rem;
+  height: 40rem;
   margin: 5rem;
   padding: 2rem;
 }
 
 #display {
   background-color: whitesmoke;
+  border: 3px solid rgba(131, 131, 143, 0.555);
   border-radius: 15px;
+  padding: 15px;
 }
 
 #numbers {
@@ -39,23 +46,31 @@ button:hover {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+  margin: 10px 0px;
 }
 
 #numbers button {
-  background-color: beige;
+  background-color: rgb(179, 179, 174);
+  padding: 35px;
+  margin: 5px 0px;
+}
+
+#numbers #number9 {
+  width: 89%;
   padding: 20px;
-  margin: 20px;
+  margin: 10px 10px;
 }
 
 #operations button {
-  background-color: palegoldenrod;
-  padding: 12px 11px;
-  margin: 30px 0px 20px 0px;
+  background-color: rgb(177, 177, 177);
+  padding: 21px 21px;
+  margin: 23px -13px 0px -13px;
 }
 
 #enter {
-  background-color: palegoldenrod;
+  background-color: rgb(167, 167, 167);
   padding: 20px 0px 20px 0px;
+  margin: -5px 0px 0px 0px;
   width: 100%;
   display: flex;
   align-items: center;
