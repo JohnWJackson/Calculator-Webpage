@@ -7,19 +7,23 @@ let OPERATION = null;
 monitorEvents();
 
 function add(a, b) {
-  return Number((a + b)).toFixed(6);
+  const int = Number.parseFloat(a) + Number.parseFloat(b);
+  return int.toFixed(6);
 }
 
 function subtract(a, b) {
-  return Number((a - b)).toFixed(6);
+  const int = Number.parseFloat(a) - Number.parseFloat(b);
+  return int.toFixed(6);
 }
 
 function multiply(a, b) {
-  return Number((a * b)).toFixed(6);
+  const int = Number.parseFloat(a) * Number.parseFloat(b);
+  return int.toFixed(6);
 }
 
 function divide(a, b) {
-  return Number((a / b)).toFixed(6);
+  const int = Number.parseFloat(a) / Number.parseFloat(b);
+  return int.toFixed(6);
 }
 
 function operate(operation, a, b) {
@@ -244,7 +248,6 @@ function eventResult() {
 function eventDecimal() {
   const decimal = document.querySelector('#decimal');
   decimal.addEventListener('click', function() {
-    console.log("here");
     if (OPERATION == null) { //If theres no operation then display has to be on INT_A
       if (IS_DECIMAL_A) { //If theres a decimal already - return
         return;

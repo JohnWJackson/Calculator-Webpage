@@ -1,14 +1,13 @@
 body {
   height: 100vh;
   width: auto;
-  margin: 0;
   font-family: 'Courier New', Courier, monospace;
   font-size: 50px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: black;
-  border: 3px solid rgba(131, 131, 143, 0.555);
 }
 
 button {
@@ -30,7 +29,7 @@ button:hover {
   width: 20rem;
   height: 40rem;
   margin: 5rem;
-  padding: 2rem;
+  padding: 2rem 2rem 3rem 2rem;
 }
 
 #display {
@@ -82,4 +81,8 @@ button:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+html {
+  background-color: black;
 }
