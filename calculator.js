@@ -1,25 +1,25 @@
 let INT_A = null;
 let INT_B = null;
+let IS_DECIMAL_A = null;
+let IS_DECIMAL_B = null;
 let OPERATION = null;
 
-getInput();
-getOperation();
-getResult();
+monitorEvents();
 
 function add(a, b) {
-  return a + b;
+  return Number((a + b)).toFixed(6);
 }
 
 function subtract(a, b) {
-  return a - b;
+  return Number((a - b)).toFixed(6);
 }
 
 function multiply(a, b) {
-  return a * b;
+  return Number((a * b)).toFixed(6);
 }
 
 function divide(a, b) {
-  return a / b;
+  return Number((a / b)).toFixed(6);
 }
 
 function operate(operation, a, b) {
@@ -60,12 +60,14 @@ function showDisplay(result) {
 function resetCalc() {
   INT_A = null;
   INT_B = null;
+  IS_DECIMAL_A = null;
+  IS_DECIMAL_B = null;
   OPERATION = null;
   const display = document.querySelector('#display');
   display.textContent = "DISPLAY";
 }
 
-function getInput() {
+function eventInput() {
   const numbers = document.querySelectorAll('.number');
   numbers.forEach(n => {
     n.addEventListener('click', function() {
@@ -185,7 +187,7 @@ function getInput() {
   })
 }
 
-function getOperation() {
+function eventOperation() {
   const operators = document.querySelectorAll('.operator');
   operators.forEach(operator => {
     operator.addEventListener('click', function() {
@@ -222,7 +224,7 @@ function getOperation() {
   })
 }
 
-function getResult() {
+function eventResult() {
   const enterButton = document.querySelector('#enter');
   enterButton.addEventListener('click', function() {
     if (INT_A != null && INT_B != null) {
@@ -232,7 +234,46 @@ function getResult() {
     showDisplay(result);
     INT_A = result;
     INT_B = null;
+    IS_DECIMAL_A = null;
+    IS_DECIMAL_B = null;
     OPERATION = null;
     }
   })
 };
+
+function eventDecimal() {
+  const decimal = document.querySelector('#decimal');
+  decimal.addEventListener('click', function() {
+    console.log("here");
+    if (OPERATION == null) { //If theres no operation then display has to be on INT_A
+      if (IS_DECIMAL_A) { //If theres a decimal already - return
+        return;
+      }
+      IS_DECIMAL_A = true;
+      (INT_A == null) ? INT_A = '0.' : INT_A = '.'
+      // if (INT_A == null) {
+      //   INT_A = "0."
+      // }
+      // else {
+      //   INT_A += '.';
+      // }
+      showDisplay('.');
+    }
+    else { //Must be dealing with INT_B then
+      if (IS_DECIMAL_B) {
+        return;
+      }
+      IS_DECIMAL_B = true;
+      (INT_B == null) ? INT_B = '0.' : INT_B = '.'
+      //INT_B += '.';
+      showDisplay('.');
+    }
+  });
+}
+
+function monitorEvents() {
+  eventInput();
+  eventOperation();
+  eventResult();
+  eventDecimal();
+}
