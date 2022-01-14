@@ -8,22 +8,39 @@ monitorEvents();
 
 function add(a, b) {
   const int = Number.parseFloat(a) + Number.parseFloat(b);
-  return int.toFixed(6);
+  return int.toFixed(getSigFigs(a, b));
 }
 
 function subtract(a, b) {
   const int = Number.parseFloat(a) - Number.parseFloat(b);
-  return int.toFixed(6);
+  return int.toFixed(getSigFigs(a, b));
 }
 
 function multiply(a, b) {
   const int = Number.parseFloat(a) * Number.parseFloat(b);
-  return int.toFixed(6);
+  return int.toFixed(getSigFigs(a, b));
 }
 
 function divide(a, b) {
   const int = Number.parseFloat(a) / Number.parseFloat(b);
-  return int.toFixed(6);
+  return int.toFixed(getSigFigs(a, b));
+}
+
+function getSigFigs(a, b) {
+  if (IS_DECIMAL_A == null) {
+    if (IS_DECIMAL_B == null) {
+      return 0;
+    }
+  }
+  const decimalA = a.indexOf('.');
+  if (decimalA == -1) { return 1; }
+  const sigFigsA = a.length - decimalA;
+
+  const decimalB = b.indexOf('.');
+  if (decimalB == -1) { return 1; }
+  const sigFigsB = b.length - decimalB;
+
+  return sigFigsA >= sigFigsB ? sigFigsA : sigFigsB;
 }
 
 function operate(operation, a, b) {
@@ -253,13 +270,7 @@ function eventDecimal() {
         return;
       }
       IS_DECIMAL_A = true;
-      (INT_A == null) ? INT_A = '0.' : INT_A = '.'
-      // if (INT_A == null) {
-      //   INT_A = "0."
-      // }
-      // else {
-      //   INT_A += '.';
-      // }
+      (INT_A == null) ? INT_A = '0.' : INT_A += '.';
       showDisplay('.');
     }
     else { //Must be dealing with INT_B then
@@ -267,8 +278,7 @@ function eventDecimal() {
         return;
       }
       IS_DECIMAL_B = true;
-      (INT_B == null) ? INT_B = '0.' : INT_B = '.'
-      //INT_B += '.';
+      (INT_B == null) ? INT_B = '0.' : INT_B += '.';
       showDisplay('.');
     }
   });
